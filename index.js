@@ -19,7 +19,7 @@ const client = new Discord.Client();
 const Songs = ["https://cdn.glitch.com/d63e88df-e942-48e1-9e09-9b1d9df3f511%2FCheeki%20Breeki.mp3?1533410514541"];
 
 client.on("ready", () => {
-  console.log(`I'm ready daddy!`);
+  console.log(`I'm ready`);
 
   client.user.setPresence({ game: { name: "Use !h join!", type: "PLAYING" } });
 })
