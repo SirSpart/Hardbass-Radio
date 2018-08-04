@@ -32,7 +32,7 @@ client.on('message', message => {
         .then(connection => { // Connection is an instance of VoiceConnection
           message.reply('I have successfully connected to the channel!')
           let RandomSong = randomSelection(Songs)
-          const dispatcher = connection.playFile("./Music/[RandomSong].mp3")
+          const dispatcher = connection.playFile("./songs/[RandomSong].mp3")
         })
         .catch(console.log)
     } else {
