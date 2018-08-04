@@ -16,6 +16,8 @@ setInterval(() => {
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
+const Songs = ["Cheeki Breeki"]
+
 client.login(process.env.token)
 
 client.on('message', message => {
@@ -23,12 +25,14 @@ client.on('message', message => {
   // we ignore it
   if (!message.guild) return
 
-  if (message.content === '/join') {
+  if (message.content === '!h join') {
     // Only try to join the sender's voice channel if they are in one themselves
     if (message.member.voiceChannel) {
       message.member.voiceChannel.join()
         .then(connection => { // Connection is an instance of VoiceConnection
           message.reply('I have successfully connected to the channel!')
+          let RandomSong = randomSelection(Songs)
+          const dispatcher = connection.playFile("./Music/[RandomSong].mp3")
         })
         .catch(console.log)
     } else {
@@ -36,3 +40,9 @@ client.on('message', message => {
     }
   }
 })
+
+
+//randomSelection by RainbowNotFound
+function randomSelection(choices) {
+  return choices[Math.floor(Math.random() * choices.length)]
+}
