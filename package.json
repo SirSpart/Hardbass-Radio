@@ -1,11 +1,16 @@
 {
+    "name": "hardbassradio",
+    "version": "1.0.0",
+    "description": "A radio for hardbass",
+    "main": "server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node index.js"
-      },
-    "dependecies": {
-        "discord.js": "^11.2.1",
-        "node-opus": "^0.3.0",
-        "opusscript": "^0.0.6",
-        "express": "^4.15.5"
+        "start": "node server.js",
+        "install": "node-gyp rebuild"
+    },
+    "engines": {
+        "node": "8.4.0"
+    },
+    "dependencies": {},
+    "author": "Cyber28"
 }
