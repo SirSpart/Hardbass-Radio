@@ -61,7 +61,7 @@ client.on('message', message => {
     } else {
       message.channel.send(`I could not find your voice channel...`);
     }
-  } else if (message.content === "!h skip") {
+  } else if (message.content === "!h skip" || message.content === `<@${client.user.id}> skip`) {
     dispatcher.end();
     playSong();
   }
