@@ -7,9 +7,17 @@ app.get("/", (request, response) => {
 });
 app.listen(process.env.PORT);
 
+
+//functions
 //randomSelection by RainbowNotFound
 function randomSelection(choices) {
   return choices[Math.floor(Math.random() * choices.length)];
+};
+
+//playSong by Cyber28
+function playSong() {
+  let RandomSong = randomSelection(Songs);
+  const dispatcher = connection.playStream(RandomSong);
 };
 
 //and now the actual bot
@@ -35,12 +43,10 @@ client.on('message', message => {
       message.member.voiceChannel.join()
         .then(connection => { // Connection is an instance of VoiceConnection
           message.reply(`I have successfully connected to the channel **${message.member.voiceChannel.name}**!`);
-          let RandomSong = randomSelection(Songs);
-          const dispatcher = connection.playStream(RandomSong);
+          playSong();
 
           dispatcher.on("end", end => {
-            let RandomSong = randomSelection(Songs);
-            connection.playStream(RandomSong);
+            playSong();
           })
         })
         .catch(console.log)
@@ -55,6 +61,9 @@ client.on('message', message => {
     } else {
       message.channel.send(`I could not find your voice channel...`);
     }
+  } else if (message.content === "!h skip") {
+    dispatcher.end();
+    playSong();
   }
 });
 
